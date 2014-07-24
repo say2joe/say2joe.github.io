@@ -140,7 +140,7 @@ MIH.FEDTest = {
     for (prop in data) {
       if ('url' === prop) {
         data[prop] = '<a href="'+ data[prop] +'" target="gh">Go to Repo</a>';
-      } else if ('pushed' === prop) {
+      } else if ('pushed' === prop && (dt = new Date(data[prop]))) {
         data[prop] = dt.toLocaleDateString() +' @ '+ dt.toLocaleTimeString();
       }
       $tmpl.find('.'+prop).html(data[prop]);
