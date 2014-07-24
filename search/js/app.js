@@ -110,7 +110,7 @@ MIH.FEDTest = {
 
     $results.empty();
     queries.push(query);
-    cache.set(query, repos);
+    cache.set(query, data);
     cache.set('queries', queries);
 
     repos.forEach(function(v) {
