@@ -69,14 +69,13 @@ MIH.FEDTest = {
       /* Exit if not Enter/Return key press */ return false;			
     }
 
-    var data;
-
-    this.query = this.DOM.$input.val() || this.defaults.github;
+    var query = this.DOM.$input.val() || this.defaults.query,
+        data = this.cache.get(query);
 
     if (data) {
-
-      console.info('Cached conditional: Repeated search term(s).');
-      // get results from local cache
+      
+      // get results from cache
+      this.renderResults(data);
 
     } else if (!this.DOS()) {
 
@@ -96,6 +95,7 @@ MIH.FEDTest = {
     }
 
     event.preventDefault();
+    this.query = query;
     return false;
   },
 
@@ -108,9 +108,10 @@ MIH.FEDTest = {
         repos = data.repositories,
         queries = cache.get('queries');
 
-    cache.set('queries', queries.push(query));
-    cache.set(query, repos);
     $results.empty();
+    queries.push(query);
+    cache.set(query, repos);
+    cache.set('queries', queries);
 
     repos.forEach(function(v) {
       var $docfrag = $(tmpl);
