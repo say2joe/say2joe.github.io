@@ -139,7 +139,7 @@ MIH.FEDTest = {
 
     for (prop in data) {
       if ('url' === prop) {
-        data[prop] = '<a href="'+ data[prop] +'" target="gh">Go to Repo</a>';
+        data[prop] = '<a href="'+ encodeURI(data[prop]) +'" target="gh">Go to Repo</a>';
       } else if ('pushed' === prop && (dt = new Date(data[prop]))) {
         data[prop] = dt.toLocaleDateString() +' @ '+ dt.toLocaleTimeString();
       }
@@ -151,8 +151,7 @@ MIH.FEDTest = {
   },
 
   closeOverlay: function(event) {
-    if ($(event.target).is('a')) return event;
-    this.DOM.$details.hide('slow');
+    return $(event.target).is('a')? event : this.DOM.$details.hide();
   },
 
   bindEvents: function() {
@@ -173,9 +172,9 @@ MIH.FEDTest = {
   },
 
   init: function() {
-    this.defaults = { github: "Joe" };
-    this.cache.set('queries', []);
-    this.$el = $("#FEDTest");
+    this.cache.set('queries', ['Joe']);
+    this.defaults = { query: 'Joe' };
+    this.$el = $("#ghSearch");
     this.DOM = this.DOM();
     this.bindEvents();
   }
