@@ -174,7 +174,7 @@ MIH.FEDTest = {
 
   init: function() {
     this.cache.set('queries', ['Joe']);
-    this.defaults = { query: 'Joe' };
+    this.defaults = { query: [''] };
     this.$el = $("#ghSearch");
     this.DOM = this.DOM();
     this.bindEvents();
