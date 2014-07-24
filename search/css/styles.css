@@ -66,6 +66,10 @@ ul li.repo span {
 	content: "URL: "
 }
 
+.repo .pushed:before {
+	content: "Updated: "
+}
+
 .repo .description:before {
 	content: "Description: "
 }

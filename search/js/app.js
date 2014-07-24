@@ -114,14 +114,9 @@ MIH.FEDTest = {
 
     repos.forEach(function(v) {
       var $docfrag = $(tmpl);
+      $docfrag.data('details', v);
       $docfrag.find('.name').html(v.name);
       $docfrag.find('.owner').html(v.owner);
-      $docfrag.data('details', {
-        url: v.url,
-        language: v.language,
-        followers: v.followers,
-        description: v.description
-      });
       $results.append($docfrag);
     });
 
